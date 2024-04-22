@@ -10,16 +10,18 @@ function App() {
   const [To, SetTo] = useState("INR");
   const currencyInfo = useCurrencyConverter(From)
   const options = Object.keys(currencyInfo);
-  const [ConvertedAmount, SetConvertedAmount] = useState(0);
+  const [ConvertedAmount, SetConvertedAmount] = useState("0");
 
   useEffect(() => {
-    SetConvertedAmount(Number(Amount) * Number(currencyInfo[To]));
+    let result=String(Number(Amount) * Number(currencyInfo[To]));
+    SetConvertedAmount(result);
   }, [Amount, From, To, currencyInfo])
 
   const swap=()=>{
     SetFrom(To);
     SetTo(From);
   }
+
   return (
     <>
       <div className='h-full w-full flex flex-wrap items-center justify-center font-Barlow'>
